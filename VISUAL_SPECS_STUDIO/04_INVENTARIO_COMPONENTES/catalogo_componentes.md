@@ -167,21 +167,26 @@ Este catálogo lista TODOS os componentes reutilizáveis do produto com props, v
 
 ---
 
-### ProofForm (Aplicação)
+### ProofForm (Aplicação) - SIMPLIFICADO
 **Onde usa**: Aplicação (Mundo Real)
 **Props**:
-- `proof_type` (enum: texto/upload/link)
+- `proof_type` (enum: texto/link)
+- `checklist_items` (array de strings)
 
 **Variantes**:
-- `texto`: Textarea
-- `upload`: File picker (imagem/áudio/documento)
-- `link`: Input URL
+- `texto`: Textarea (descrição do que foi feito)
+- `link`: Input URL (opcional)
+- `checklist`: Lista de checkboxes auto-declarativos
 
 **Comportamento**:
-- Validação: Textarea não vazia, arquivo < 10MB, URL válida
-- Upload exibe progresso
+- Validação: Textarea não vazia (min 20 chars) OU URL válida
+- Checklist: Todos os items devem ser marcados
+- SEM upload de arquivos
 
-[fonte: 07 - alinhamento.md → Trust & Safety → Anti-fraude em uploads]
+**IMPORTANTE**: Upload de arquivos foi REMOVIDO conforme decisão do cliente.
+Validação baseada em honestidade + checklist auto-declarativo.
+
+[fonte: Resposta Cliente #2 → REMOVER ou SIMPLIFICAR upload - evitar tarefas de upload]
 
 ---
 
