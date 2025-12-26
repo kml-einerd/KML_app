@@ -1,0 +1,255 @@
+{
+  "project": "VISUAL_SPECS_STUDIO - EdTech Product",
+  "version": "1.0",
+  "last_updated": "2025-12-26",
+  "description": "Manifesto legível por máquina para automação e validação",
+
+  "principles": {
+    "visual_first": "Toda spec de tela permite desenhar no Figma apenas com o texto",
+    "traceability": "Toda decisão cita arquivo fonte com [fonte: arquivo.md → tópico]",
+    "states_mandatory": "Toda tela implementa Loading, Empty, Error, Success",
+    "one_cta": "Cada tela tem exatamente 1 CTA dominante",
+    "sound_by_state": "Som mapeado por tension_profile (SAFE/TENSION/STATUS)",
+    "accessibility_first": "Acessibilidade não é opcional (WCAG AA, reduce motion/sound, legendas)",
+    "qa_gates_block": "Quality gates bloqueiam publicação automática",
+    "no_invented_features": "Nenhuma funcionalidade inventada - apenas dos arquivos fonte"
+  },
+
+  "apps": {
+    "learner": {
+      "description": "App do aluno - experiência de aprendizagem ativa",
+      "screens_count": 15,
+      "navigation": "Bottom tabs (5): Home • Trilha • Review • Progresso • Perfil",
+      "core_loop": "Home → Player (beats + checkpoints) → Conclusão",
+      "tension_profiles": ["SAFE", "TENSION", "STATUS"]
+    },
+    "creator_studio": {
+      "description": "App do criador - ferramentas de build, QA, publish",
+      "screens_count": 13,
+      "navigation": "Sidebar (8-10 itens)",
+      "core_loop": "Create → Build → QA → Publish",
+      "editions": ["MicroSaaS", "Standard", "Full"]
+    },
+    "platform_admin": {
+      "description": "App do admin - moderação, marketplace, infra",
+      "screens_count": 6,
+      "navigation": "Sidebar (6-8 itens)",
+      "core_loop": "Moderação → Catálogo → Infra"
+    }
+  },
+
+  "screen_template": {
+    "required_sections": [
+      "1) Objetivo da Tela",
+      "2) Usuário & Contexto",
+      "3) Layout & Hierarquia (wireframe textual)",
+      "4) Elementos & Componentes (comportamento)",
+      "5) Ação Primária (1 CTA dominante)",
+      "6) Estados (Loading, Empty, Error, Success)",
+      "7) Conteúdo / Microcopy",
+      "8) Som/Haptics (SAFE/TENSION/STATUS)",
+      "9) Eventos (Analytics LIGHT)",
+      "10) Definition of Done",
+      "11) Modo Studio / Edições",
+      "12) Mapeamento Back Após Visual",
+      "13) Rastreabilidade [fonte: arquivo.md → tópico]"
+    ]
+  },
+
+  "components": {
+    "total_count": 35,
+    "categories": {
+      "learner_specific": 11,
+      "creator_specific": 6,
+      "admin_specific": 2,
+      "transversal": 16
+    },
+    "critical_components": [
+      "PlayerFrame",
+      "CheckpointModule",
+      "FeedbackCard",
+      "MissionCard",
+      "ProgressHeader",
+      "QAGateItem",
+      "XPBreakdownCard"
+    ]
+  },
+
+  "tokens": {
+    "categories": [
+      "colors (primary, neutral, semantic, tension_variants)",
+      "typography (font families, sizes, weights, line heights)",
+      "spacing (0-24 scale, multiples of 4px)",
+      "border_radius (sm, base, md, lg, xl, full)",
+      "shadows (sm, base, md, lg, xl)",
+      "opacity (0, 10, 25, 50, 75, 100)",
+      "z_index (base, dropdown, sticky, overlay, modal, toast, tooltip)",
+      "breakpoints (mobile, tablet, desktop, wide)",
+      "transitions (duration: fast/base/slow, easing: linear/in/out/inout)"
+    ],
+    "wcag_compliance": "AA minimum (contrast ratio 4.5:1 for normal text, 3:1 for large)"
+  },
+
+  "sound_system": {
+    "by_state": {
+      "SAFE": ["ambient_safe", "start_soft", "correct_soft", "wrong_soft", "complete_soft"],
+      "TENSION": ["ambient_tension", "start_tension", "correct_tension", "wrong_tension", "complete_tension"],
+      "STATUS": ["ambient_status", "badge_unlock", "level_up", "confetti"]
+    },
+    "by_action": [
+      "tap_soft", "swipe", "toggle_on", "toggle_off", "modal_open", "modal_close",
+      "login_success", "upload_success", "save_success", "publish_success", "error_soft"
+    ],
+    "volume_mix": {
+      "ambient": "20-30%",
+      "cues": "40-50%",
+      "feedback": "60-70%",
+      "celebration": "80-90%"
+    },
+    "accessibility": {
+      "controls": ["mute_global", "toggle_player", "reduce_cues", "haptics_on_off", "reduce_motion", "captions"]
+    }
+  },
+
+  "qa_gates": [
+    {
+      "gate": 1,
+      "name": "Atividade",
+      "rule": "Checkpoint por beat obrigatório",
+      "blocks": true
+    },
+    {
+      "gate": 2,
+      "name": "Transferência",
+      "rule": "Aplicação por módulo obrigatória",
+      "blocks": true
+    },
+    {
+      "gate": 3,
+      "name": "Progressão",
+      "rule": "Pré-requisitos claros",
+      "blocks": true
+    },
+    {
+      "gate": 4,
+      "name": "Feedback",
+      "rule": "Checkpoints têm feedback coaching",
+      "blocks": true
+    },
+    {
+      "gate": 5,
+      "name": "Tempo/Escopo",
+      "rule": "Beats 45-90s",
+      "blocks": false,
+      "warning": true
+    },
+    {
+      "gate": 6,
+      "name": "Clareza",
+      "rule": "Objetivo de aprendizagem definido",
+      "blocks": true
+    }
+  ],
+
+  "analytics": {
+    "approach": "LIGHT - eventos essenciais, não telemetria excessiva",
+    "critical_events": [
+      "beat_completed (drop-off por beat)",
+      "lesson_completed (funil de conclusão)",
+      "checkpoint_answered (validação de aprendizagem)",
+      "publish_success (atividade de criadores)",
+      "app_opened (retenção D1/D7)"
+    ]
+  },
+
+  "editions": {
+    "MicroSaaS": {
+      "price": "R$ 29/mês",
+      "limits": {
+        "infoapps": 1,
+        "users": 100,
+        "tts_chars": 1000,
+        "storage_gb": 1
+      },
+      "features_removed": ["review_srs", "aplicacao", "badges", "import_pack", "versioning", "analytics"]
+    },
+    "Standard": {
+      "price": "R$ 99/mês",
+      "limits": {
+        "infoapps": 5,
+        "users": 500,
+        "tts_chars": 5000,
+        "storage_gb": 5
+      },
+      "features_removed": ["ligas_ranking", "roles_audit"]
+    },
+    "Full": {
+      "price": "R$ 299/mês",
+      "limits": {
+        "infoapps": "unlimited",
+        "users": "unlimited",
+        "tts_chars": 20000,
+        "storage_gb": 50
+      },
+      "features_removed": []
+    }
+  },
+
+  "source_files": [
+    "01 - economia, governança, produção, qualidade, etc.md",
+    "03 - todas as telas, flows e governança fechados.md",
+    "04 - modo Studio.md",
+    "05 - sistema completo de EdTech.md",
+    "06 - especificação de produto final.md",
+    "07 - alinhamento geral.md",
+    "08 - conselho e convidados visões.md",
+    "09 - visão final e condições.md"
+  ],
+
+  "deliverables": {
+    "documentation": {
+      "README": "00_README.md",
+      "consolidacao_conselho": "01_CONSOLIDACAO_CONSELHO.md",
+      "mapa_navegacao": "02_MAPA_NAVEGACAO_OFICIAL.md"
+    },
+    "screen_specs": {
+      "learner": 15,
+      "creator_studio": 13,
+      "platform_admin": 6,
+      "total": 34
+    },
+    "component_inventory": {
+      "catalogo": "catalogo_componentes.md",
+      "tokens": "placeholders_tokens.md",
+      "estados": "estados_e_variantes.md"
+    },
+    "studio_variants": {
+      "matriz": "matriz_edicoes.md",
+      "regras": "regras_modularidade.md",
+      "templates": "templates_micro_saas.md"
+    },
+    "sound_system": {
+      "by_state": "mapa_som_por_estado.md",
+      "by_action": "mapa_som_por_acao.md",
+      "accessibility": "regras_acessibilidade.md"
+    },
+    "analytics": "taxonomia_eventos_por_tela.md",
+    "qa_governance": {
+      "gates": "gates_publicacao.md",
+      "dod": "definicao_pronto_global.md"
+    },
+    "manifesto": "manifesto_specs_telas.json",
+    "open_questions": "riscos_e_incognitas.md"
+  },
+
+  "validation": {
+    "all_screens_follow_template": true,
+    "all_screens_traceable": true,
+    "components_catalogued": true,
+    "tokens_defined": true,
+    "sound_system_complete": true,
+    "qa_gates_documented": true,
+    "analytics_taxonomy_defined": true,
+    "no_invented_features": true
+  }
+}
