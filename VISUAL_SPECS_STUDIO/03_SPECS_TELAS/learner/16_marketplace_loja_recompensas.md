@@ -11,36 +11,42 @@ Permitir que aluno troque XP/moedas por produtos e benefícios reais.
 ```
 [Header]
 **Minha Carteira**
-💰 2.450 moedas | ⚡ 12.300 XP
+💰 2.450 Coins (saldo) | 📊 8.500 Coins (lifetime)
 
 [Tabs]
 [Todos] [Descontos] [Premium] [Gift Cards] [Físicos]
 
 **Destaques**
-📦 Desconto 20% em Curso Avançado
-    1.000 moedas
-    [Comprar agora] [Comprar com Coins]
+📦 Certificado Premium
+    500 Coins OU R$ 29,90
+    [Comprar com Coins] [Comprar por R$ 29,90]
 
-🎁 Gift Card R$50
-    5.000 moedas
+🎁 Tema Escuro
+    50 Coins
     [Comprar com Coins]
 
 **Todos os Produtos (23)**
-• Acesso Premium 30 dias - 2.500 moedas
-  [Comprar com Coins]
+• Acesso Premium 30 dias - 1.000 Coins OU R$ 49,00
+  [Comprar com Coins] [Comprar por R$]
 
-• Merchandise Exclusivo - 3.000 moedas
+• Camiseta Exclusiva - R$ 79,90
+  [Comprar por R$ 79,90]
+
+• Avatar Premium - 100 Coins
   [Comprar com Coins]
 ```
 
 ## 4) Elementos & Componentes
-- **WalletHeader**: Exibe saldo de moedas e XP
-- **ProductCard**: Card de produto com preço em moedas
-- **CTAs Duplos**: "Comprar agora" (dinheiro real) OU "Comprar com Coins" (moedas)
+- **WalletHeader**: Exibe saldo de Coins (disponível) e Coins Lifetime (acumulado total)
+- **ProductCard**: Card de produto com preço em Coins, Reais, ou AMBOS
+- **CTAs Híbridos**:
+  - "Comprar com Coins" (gamificação, se produto aceita Coins)
+  - "Comprar por R$ X" (pagamento real via Stripe, se produto aceita Reais)
+  - Se produto aceita AMBOS → mostra 2 botões lado a lado
 - **FilterTabs**: Filtrar por categoria
-- **EmptyState**: "Você ainda não tem moedas suficientes. Continue aprendendo!"
+- **EmptyState**: "Você ainda não tem Coins suficientes. Continue estudando para ganhar mais!"
 
-[fonte: Resposta Cliente #3 → Estética Amazon/Mercado Livre simplificada, sempre 2 opções de compra]
+[fonte: Resposta Cliente FINAL → Loja aceita Coins + Reais (criador cobra por produtos)]
 
 ## 5) Ação Primária
 "Comprar com Coins" (usar moedas acumuladas)
@@ -52,10 +58,15 @@ Permitir que aluno troque XP/moedas por produtos e benefícios reais.
 - **Insufficient Funds**: Botão disabled com tooltip "Você precisa de mais X moedas"
 
 ## 7) Conteúdo / Microcopy
-- **Wallet**: "Você tem X moedas. Continue aprendendo para ganhar mais!"
-- **Produto**: Nome claro + benefício + preço em moedas
-- **Confirmação**: "Tem certeza que deseja resgatar este produto por X moedas?"
-- **Sucesso**: "Produto resgatado! Confira seu email para detalhes."
+- **Wallet**: "Você tem X Coins disponíveis. Continue estudando para ganhar mais!"
+- **Produto Apenas Coins**: "50 Coins"
+- **Produto Apenas Reais**: "R$ 29,90"
+- **Produto Híbrido**: "500 Coins OU R$ 29,90"
+- **Confirmação (Coins)**: "Confirmar compra? -500 coins (você ficará com X coins)"
+- **Confirmação (Reais)**: Redireciona para Stripe Checkout
+- **Sucesso (Coins)**: "Produto comprado com Coins! 🎉"
+- **Sucesso (Reais)**: "Pagamento confirmado! Produto enviado para seu email."
+- **Saldo Insuficiente**: "Você precisa de 500 Coins mas tem apenas 245. Faltam 255 coins!"
 
 ## 8) Som/Haptics
 **STATUS** (recompensa/conquista): `purchase_success.mp3`, `coins_spend.mp3`
@@ -80,14 +91,23 @@ Permitir que aluno troque XP/moedas por produtos e benefícios reais.
 
 ## 12) Mapeamento Back
 `GET /api/learner/store/products` (lista produtos disponíveis)
-`GET /api/learner/wallet` (saldo atual moedas/XP)
-`POST /api/learner/store/purchase` (payload: `product_id`, `payment_method: coins|real`)
+  → Response: `{ products: [{ id, name, price_coins, price_brl, accepts_coins, accepts_brl, ... }] }`
 
-**Conversão XP → Moedas**: Backend define fórmula (1:1 ou custom por app)
+`GET /api/learner/wallet` (saldo atual Coins)
+  → Response: `{ coins_balance, coins_lifetime, streak_days }`
 
-**Integração Fulfillment**: Produtos físicos exigem endereço de entrega
+`POST /api/learner/store/purchase` (payload: `product_id`, `payment_method: coins|brl`)
+  → Se `payment_method: coins` → Debita Coins e entrega produto
+  → Se `payment_method: brl` → Retorna `checkout_url` (Stripe Checkout)
 
-[fonte: Resposta Cliente #3 → NÃO é catálogo de apps, é loja de recompensas]
+`GET /api/learner/store/checkout/success?session_id={stripe_session_id}`
+  → Confirma pagamento Stripe e entrega produto
+
+**Integração Stripe**: Produtos com preço em Reais requerem Stripe Connect configurado pelo criador
+
+**Integração Fulfillment**: Produtos físicos coletam endereço no Stripe Checkout
+
+[fonte: Resposta Cliente FINAL → Loja híbrida Coins + Reais]
 
 ## 13) Rastreabilidade
 [fonte: Resposta Cliente #3 → Marketplace = Loja de Recompensas]
