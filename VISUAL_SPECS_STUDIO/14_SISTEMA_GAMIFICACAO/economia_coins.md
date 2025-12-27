@@ -83,7 +83,6 @@
 | **Streak de 7 dias** | 50 coins | 50 coins | Bonus semanal (milestone) |
 | **Streak de 30 dias** | 200 coins | 200 coins | Bonus mensal (milestone) |
 | **Completar Daily Goal** | 10 coins | 10 coins | Meta diária (ex: 1 lição/dia) |
-| **Subir de Nível** | 20 coins | 20-100 coins | Escalona: Nível 10 = 100 coins |
 | **Ganhar Badge** | 25 coins | 25 coins | Bonus por conquista |
 | **Completar Estação** | 100 coins | 100-200 coins | +100 coins se 100% conclusão |
 | **Convidar amigo (referral)** | 50 coins | 50 coins | Quando amigo completa 1ª lição |
@@ -143,54 +142,56 @@
 
 ---
 
-## 3. NÍVEIS (BASEADOS EM COINS LIFETIME)
+## 3. PROGRESSO VISUAL (APENAS COINS + BADGES)
 
-### 3.1. Como Funcionam Níveis
+### 3.1. Sistema Simplificado (SEM NÍVEIS)
 
-**Sistema**: Níveis baseados em **Coins acumulados (lifetime)**
+**Cliente disse**: ✅ "Não tem níveis (apenas Coins e badges)"
 
-**Por que lifetime?**
-- Aluno não "perde nível" ao gastar coins na loja
-- Incentiva gastar coins sem medo de perder progresso
-- Mostra evolução real (total de coins já ganhos)
+**MUDANÇA CRÍTICA**:
+- **REMOVIDO** conceito de níveis (Bronze/Prata/Ouro/Diamante/Lenda)
+- Sistema ultra-simplificado:
+  - **Coins lifetime** (acumulado total) = progresso numérico
+  - **Coins saldo** (disponível) = moeda para gastar
+  - **Badges** (conquistas específicas) = progresso visual
+  - **Streaks** (sequência diária) = engajamento
 
----
-
-### 3.2. Tabela de Níveis
-
-| Nível | Coins Lifetime Necessários | Título | Ícone |
-|-------|---------------------------|--------|-------|
-| 1 | 0-100 coins | Bronze | 🥉 |
-| 2 | 101-500 coins | Prata | 🥈 |
-| 3 | 501-2.000 coins | Ouro | 🥇 |
-| 4 | 2.001-10.000 coins | Diamante | 💎 |
-| 5 | 10.001+ coins | Lenda | 👑 |
+**Badges substituem níveis**:
+- Badge "Iniciante": 10 lições completadas
+- Badge "Dedicado": 50 lições completadas
+- Badge "Expert": 200 lições completadas
+- Badge "Streak Mestre": 30 dias consecutivos
+- Badge "Perfect": 100% acertos em 10 atividades
 
 **Visual no Learner App**:
 ```
 ┌─────────────────────────────────────────────┐
-│  💎 Nível Diamante                          │
-│  ████████████████████░░░░░░░ 65%            │
-│  5.200 / 10.000 coins                       │
-│  Faltam 4.800 coins para Lenda 👑           │
+│  📊 Seu Progresso                           │
+│  💰 Coins Lifetime: 1.850                   │
+│  💳 Coins Disponíveis: 245                  │
+│  🔥 Streak: 7 dias                          │
+│  🏆 Badges: 5 / 12                          │
+│                                             │
+│  [Ver Badges] [Ver Como Ganhar Coins]      │
 └─────────────────────────────────────────────┘
 ```
 
 ---
 
-### 3.3. Recompensas por Level Up
+### 3.2. Por que Remover Níveis?
 
-**Ao subir de nível, aluno ganha**:
-- Bonus de coins (escalona com nível)
-- Badge especial
-- Acesso a produtos exclusivos na loja (ex: produtos "só para Diamante+")
+**Simplificação**:
+- Níveis adicionam complexidade sem benefício claro
+- Coins lifetime já servem como métrica de progresso
+- Badges são mais flexíveis e específicos
 
-| Nível | Bonus Coins | Badge | Produto Desbloqueado |
-|-------|-------------|-------|----------------------|
-| Bronze → Prata | +20 coins | "Aprendiz" | Tema Escuro |
-| Prata → Ouro | +50 coins | "Dedicado" | Avatares Premium |
-| Ouro → Diamante | +100 coins | "Mestre" | Certificado Premium |
-| Diamante → Lenda | +200 coins | "Lenda" | Todos os produtos |
+**Transparência**:
+- Aluno entende melhor "1.850 coins acumulados" do que "Nível Ouro"
+- Sem confusão entre "nível" e "coins saldo"
+
+**Flexibilidade**:
+- Criador pode criar badges personalizados
+- Não há barreira artificial (ex: "produto só para nível 5+")
 
 ---
 
@@ -233,7 +234,7 @@ Criador pode:
 ```
 ┌─────────────────────────────────────────────┐
 │  💰 Seus Coins: 245 (saldo disponível)      │
-│  📊 Coins Lifetime: 1.850 (Nível Ouro 🥇)   │
+│  📊 Coins Lifetime: 1.850 (total acumulado) │
 │  ─────────────────────────────────────────  │
 │  [Card Produto 1]  [Card Produto 2]         │
 │  Tema Escuro       Certificado Premium      │
@@ -293,39 +294,37 @@ Criador pode:
 
 ---
 
-## 6. LIGAS E RANKING (COMPETIÇÃO SOCIAL)
+## 6. RANKING E LIGAS (v1.2 - FUTURO)
 
-### 6.1. Ligas por Coins Ganhos na Semana
+### 6.1. Sistema de Ranking (Opcional)
 
-**Sistema**: Alunos competem semanalmente em ligas baseadas em **Coins ganhos na semana** (não lifetime)
+**Sistema**: Alunos competem semanalmente baseados em **Coins ganhos na semana**
 
-**Ligas** (tipo Duolingo):
-1. Bronze (todos começam aqui)
-2. Prata (top 10 de Bronze)
-3. Ouro (top 10 de Prata)
-4. Diamante (top 10 de Ouro)
-5. Lenda (top 10 de Diamante)
+**NOTA**: Sistema de ligas é **OPCIONAL** e entra em **v1.2** (não v1)
+- v1: Apenas Coins + Badges + Streaks (sem competição)
+- v1.2: Adiciona ranking/ligas (se criador ativar)
 
-**Recompensas**:
-- Top 3 de cada liga: +50 coins
-- Top 1: +100 coins + Badge
+**Por que opcional?**:
+- Foco em aprendizagem colaborativa (não competitiva)
+- Criador escolhe se quer ranking ou não
+- Alguns contextos (corporativo, acadêmico) preferem sem competição
 
-**Visual**:
+**Visual (quando ativado)**:
 ```
 ┌─────────────────────────────────────────────┐
-│  🏆 Liga Ouro - Semana 12/2025              │
+│  🏆 Ranking Semanal                         │
 │  ─────────────────────────────────────────  │
-│  1. @joao        245 coins  ⬆️ Diamante      │
-│  2. @maria       220 coins  ⬆️ Diamante      │
-│  3. @pedro       205 coins  ⬆️ Diamante      │
+│  1. @joao        245 coins ganhos           │
+│  2. @maria       220 coins ganhos           │
+│  3. @pedro       205 coins ganhos           │
 │  ...                                        │
-│  15. Você         80 coins  ➡️ Ouro          │
-│  ...                                        │
-│  48. @ana         20 coins  ⬇️ Prata         │
+│  15. Você         80 coins ganhos           │
 └─────────────────────────────────────────────┘
 ```
 
-**Nota**: Ranking semanal é baseado em **Coins ganhos esta semana**, não lifetime total.
+**Recompensas (quando ativado)**:
+- Top 3: +50 coins
+- Top 1: +100 coins + Badge "Campeão da Semana"
 
 ---
 
@@ -469,12 +468,8 @@ class CoinService:
         # Atualizar saldo
         wallet.coins_balance += amount
 
-        # Verificar level up
-        new_level = calculate_level(wallet.coins_lifetime)
-        if new_level > wallet.level:
-            wallet.level = new_level
-            award_coins(user_id, level_up_coins(new_level), 'level_up')
-            award_badge(user_id, f'level_{new_level}')
+        # Verificar badges (baseado em coins lifetime)
+        check_and_award_badges(user_id, wallet.coins_lifetime)
 
         # Log transação
         CoinTransaction.create(user_id, amount, 'earned', source, metadata)
@@ -490,10 +485,6 @@ class CoinService:
         # Verificar saldo
         if wallet.coins_balance < product.price_coins:
             raise InsufficientCoins()
-
-        # Verificar nível mínimo
-        if wallet.level < product.min_level:
-            raise LevelTooLow()
 
         # Debitar coins (apenas do SALDO, lifetime NÃO diminui)
         wallet.coins_balance -= product.price_coins
@@ -516,18 +507,20 @@ class CoinService:
         wallet.save()
         return purchase
 
-    def calculate_level(coins_lifetime):
-        """Calcular nível baseado em coins lifetime"""
-        if coins_lifetime < 101:
-            return 1  # Bronze
-        elif coins_lifetime < 501:
-            return 2  # Prata
-        elif coins_lifetime < 2001:
-            return 3  # Ouro
-        elif coins_lifetime < 10001:
-            return 4  # Diamante
-        else:
-            return 5  # Lenda
+    def check_and_award_badges(user_id, coins_lifetime):
+        """Verificar e conceder badges baseados em coins lifetime"""
+        badges_to_award = []
+
+        if coins_lifetime >= 100 and not has_badge(user_id, 'iniciante'):
+            badges_to_award.append('iniciante')  # 100 coins
+        if coins_lifetime >= 500 and not has_badge(user_id, 'dedicado'):
+            badges_to_award.append('dedicado')  # 500 coins
+        if coins_lifetime >= 2000 and not has_badge(user_id, 'expert'):
+            badges_to_award.append('expert')  # 2000 coins
+
+        for badge_id in badges_to_award:
+            award_badge(user_id, badge_id)
+            award_coins(user_id, 25, 'badge_earned')  # Bonus por badge
 ```
 
 ---

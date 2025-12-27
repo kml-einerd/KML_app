@@ -2,8 +2,46 @@
 
 **Versão**: 1.0
 **Data**: 2025-12-27
-**Status**: AGUARDANDO RESPOSTA DO CLIENTE
+**Status**: ✅ RESPONDIDO PELO CLIENTE (2025-12-27)
 **Contexto**: Clarificações críticas após respostas sobre open source + GCP
+
+---
+
+## ✅ RESPOSTAS FINAIS DO CLIENTE (CONSOLIDADO)
+
+### 1. GitHub → USAR TUDO ✅
+**Resposta**: "Todas as opções que forem necessárias e mais adequadas"
+
+**Implementar**:
+- ✅ GitHub Repository (código open source)
+- ✅ GitHub Pages (documentação + landing page)
+- ✅ GitHub Actions (CI/CD automático)
+- ✅ GitHub Codespaces (VS Code na nuvem)
+
+### 2. Loja Híbrida → Coins OU Reais ✅
+**Resposta**: "Loja aceita Coins + Reais (criador cobra por produtos)"
+
+**Implementar**:
+- ✅ Produto tem 2 preços opcionais (Coins E/OU Reais)
+- ✅ Aluno escolhe como pagar
+- ✅ Stripe Connect para pagamentos em Reais
+- ✅ Split payment (plataforma cobra taxa opcional)
+
+### 3. Hospedagem → Localhost PRIMEIRO ✅
+**Resposta**: "Mix do D com C - podemos começar com o localhost"
+
+**Implementar**:
+- ✅ v1: Localhost (Docker Compose)
+- ✅ v1.1: Deploy GCP (quando precisar escalar)
+
+### 4. Níveis → REMOVIDOS ✅
+**Resposta**: "Não tem níveis (apenas Coins e badges)"
+
+**Implementar**:
+- ✅ Remover completamente níveis (Bronze/Prata/Ouro/etc.)
+- ✅ Sistema simplificado: Coins Lifetime + Coins Saldo + Badges + Streaks
+
+---
 
 ---
 
@@ -309,42 +347,40 @@ _______________________________________________________________
 
 ---
 
-## RESUMO DAS PERGUNTAS
-
-Para facilitar, resuma suas escolhas aqui:
+## ✅ RESUMO DAS RESPOSTAS (FINAL)
 
 **1. "Rodar no GitHub" significa**:
-- [ ] GitHub Pages (landing page)
-- [ ] GitHub Actions (CI/CD)
-- [ ] GitHub Codespaces (dev cloud)
-- [ ] GitHub como repositório (open source)
-- [ ] Outro: _______________
+- [x] GitHub Pages (landing page)
+- [x] GitHub Actions (CI/CD)
+- [x] GitHub Codespaces (dev cloud)
+- [x] GitHub como repositório (open source)
+- **TODAS as opções implementadas**
 
 **2. Como criador ganha dinheiro**:
 - [ ] InfoApp é 100% grátis (sem monetização)
 - [ ] Criador vende produtos externos (funil)
-- [ ] Loja aceita Coins OU Reais
+- [x] Loja aceita Coins OU Reais ✅
 - [ ] Código open source mas cobra acesso
-- [ ] Outro: _______________
+- **Criador vende produtos na loja (Coins ou Reais)**
 
 **3. Quem paga GCP**:
 - [ ] Você (cliente) paga GCP central
 - [ ] Cada criador paga próprio GCP (self-hosted)
 - [ ] Apenas free tier (sem compromisso)
-- [ ] Localhost é suficiente
-- [ ] Outro: _______________
+- [x] Localhost é suficiente (v1), GCP opcional (v1.1) ✅
+- **v1 = Localhost, v1.1 = GCP (quando escalar)**
 
 **4. Níveis funcionam assim**:
 - [ ] Baseados em Coins acumulados (lifetime)
-- [ ] Sem níveis (apenas Coins + Badges)
+- [x] Sem níveis (apenas Coins + Badges) ✅
 - [ ] Baseados em lições completadas
-- [ ] Outro: _______________
+- **Níveis REMOVIDOS completamente**
 
 **5. Produtos da loja são pagos com**:
 - [ ] Apenas Coins (gamificação)
-- [ ] Coins OU Reais (duplo preço)
+- [x] Coins OU Reais (duplo preço) ✅
 - [ ] Apenas Reais
-- [ ] Outro: _______________
+- **Produto pode ter Coins, Reais, ou AMBOS**
 
 ---
 

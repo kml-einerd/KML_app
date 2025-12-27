@@ -109,7 +109,17 @@
 │  Descrição: [Campo de texto longo............]                │
 │  Tipo: [Dropdown: Personalização ▼]                           │
 │         (Desconto, Físico, Digital, Personalização, Power-up) │
-│  Preço: [50] coins                                            │
+│                                                                │
+│  PRECIFICAÇÃO (HÍBRIDA):                                       │
+│  ☑️  Aceita Coins                                              │
+│      Preço: [50] coins                                         │
+│                                                                │
+│  ☐  Aceita Reais (BRL)                                         │
+│      Preço: R$ [0.00]                                          │
+│      ⚠️  Requer conexão Stripe [Conectar Stripe]              │
+│                                                                │
+│  💡 Sugestão: 50 coins ≈ R$ 3,00 (equiv: 1 BRL = 16,7 coins)  │
+│                                                                │
 │  Imagem: [📷 Upload]  [URL da imagem atual]                   │
 │                                                                │
 │  Estoque:                                                      │

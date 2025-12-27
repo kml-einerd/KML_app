@@ -1,0 +1,267 @@
+name: CI (Testes Automáticos)
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test-backend:
+    name: Backend Tests (Python/FastAPI)
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:15
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: infoapp_test
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Cache Python dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+
+      - name: Install dependencies
+        run: |
+          cd backend
+          pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install pytest pytest-cov pytest-asyncio
+
+      - name: Run linting (Ruff)
+        run: |
+          pip install ruff
+          ruff check backend/ --output-format=github
+
+      - name: Run tests
+        env:
+          DATABASE_URL: postgresql://postgres:postgres@localhost:5432/infoapp_test
+          SECRET_KEY: test-secret-key
+          ENVIRONMENT: test
+        run: |
+          cd backend
+          pytest tests/ \
+            --cov=api \
+            --cov-report=xml \
+            --cov-report=term \
+            -v
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v3
+        with:
+          file: ./backend/coverage.xml
+          flags: backend
+          name: backend-coverage
+
+  test-frontend-learner:
+    name: Frontend Tests (Learner App)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js 18
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Cache Node dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Install dependencies
+        run: |
+          cd apps/learner
+          npm ci
+
+      - name: Run linting (ESLint)
+        run: |
+          cd apps/learner
+          npm run lint
+
+      - name: Run type check (TypeScript)
+        run: |
+          cd apps/learner
+          npm run type-check
+
+      - name: Run tests (Jest)
+        run: |
+          cd apps/learner
+          npm run test -- --coverage
+
+      - name: Build app
+        run: |
+          cd apps/learner
+          npm run build
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v3
+        with:
+          file: ./apps/learner/coverage/coverage-final.json
+          flags: frontend-learner
+          name: learner-coverage
+
+  test-frontend-creator:
+    name: Frontend Tests (Creator Studio)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js 18
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Cache Node dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Install dependencies
+        run: |
+          cd apps/creator-studio
+          npm ci
+
+      - name: Run linting (ESLint)
+        run: |
+          cd apps/creator-studio
+          npm run lint
+
+      - name: Run type check (TypeScript)
+        run: |
+          cd apps/creator-studio
+          npm run type-check
+
+      - name: Run tests (Jest)
+        run: |
+          cd apps/creator-studio
+          npm run test -- --coverage
+
+      - name: Build app
+        run: |
+          cd apps/creator-studio
+          npm run build
+
+  docker-build:
+    name: Docker Build Test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      - name: Build Backend Docker image
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          file: ./docker/Dockerfile.backend
+          push: false
+          tags: infoapp/backend:test
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - name: Build Frontend Docker image
+        uses: docker/build-push-action@v4
+        with:
+          context: ./apps/learner
+          file: ./docker/Dockerfile.frontend
+          push: false
+          tags: infoapp/frontend:test
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+  security-scan:
+    name: Security Scan (CodeQL)
+    runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v2
+        with:
+          languages: python, javascript
+
+      - name: Autobuild
+        uses: github/codeql-action/autobuild@v2
+
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v2
+
+  dependency-check:
+    name: Dependency Vulnerability Scan
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Run Snyk Security Scan (Python)
+        uses: snyk/actions/python-3.10@master
+        continue-on-error: true
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          args: --file=backend/requirements.txt
+
+      - name: Run Snyk Security Scan (Node.js)
+        uses: snyk/actions/node@master
+        continue-on-error: true
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          args: --file=apps/learner/package.json
+
+  all-tests-passed:
+    name: All Tests Passed ✅
+    runs-on: ubuntu-latest
+    needs:
+      - test-backend
+      - test-frontend-learner
+      - test-frontend-creator
+      - docker-build
+      - security-scan
+
+    steps:
+      - name: All tests passed
+        run: echo "✅ All tests passed! Ready to merge."
