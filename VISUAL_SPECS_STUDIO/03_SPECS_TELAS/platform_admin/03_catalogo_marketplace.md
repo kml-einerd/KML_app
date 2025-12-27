@@ -1,35 +1,44 @@
-# CATÁLOGO / MARKETPLACE
+# LOJA DE RECOMPENSAS (CONFIGURAÇÃO GLOBAL)
 
-## 1) Objetivo: Listagem de InfoApps públicos, descoberta, featured/categorias.
-[fonte: 03 - todas as telas, flows e governança fechados.md → 2.3 Platform Admin → Catálogo/Marketplace]
+## 1) Objetivo: Configurar catálogo global de produtos/benefícios que alunos podem trocar por XP/moedas.
+[fonte: Resposta Cliente #3 → Marketplace é LOJA DE RECOMPENSAS, não catálogo de apps]
 
-## 2) Usuário: Platform Admin, **Contexto**: Curadoria de marketplace
+## 2) Usuário: Platform Admin, **Contexto**: Configuração de produtos da loja
 
 ## 3) Layout
 ```
-**Marketplace Público (45 apps)**
+**Catálogo de Produtos da Loja (23 produtos)**
 
-[Search] [Filtros: Nicho/Status]
+[Search] [Filtros: Categoria/Status]
 
-**Apps Listados**
-• VSL Mastery - 120 usuários - ⭐ 4.8
-  [Featured] [Editar Categoria] [Remover]
+**Produtos Ativos**
+• Desconto 20% em Curso Avançado - 1000 moedas
+  [Editar] [Desativar] [Ver Resgates]
 
-• Big Idea Workshop - 45 usuários - ⭐ 4.5
-  [Marcar Featured]
+• Acesso Premium 30 dias - 2500 moedas
+  [Editar] [Desativar]
 
-**Aguardando Aprovação (3)**
-• Content Lab - Pendente review editorial
-  [Revisar] [Aprovar] [Reprovar]
+• Gift Card R$50 - 5000 moedas
+  [Editar] [Desativar]
+
+**Categorias**
+- Descontos em cursos
+- Acesso premium temporário
+- Merchandise físico
+- Gift cards
+- Benefícios exclusivos
 ```
 
-## 4) CTA Primária: "Revisar" (apps pendentes)
-## 5) Estados: Loading, Success
+## 4) CTA Primária: "Adicionar Produto"
+## 5) Estados: Loading, Empty ("Nenhum produto cadastrado"), Success
 ## 6) Som: **SAFE**
-## 7) Eventos: `marketplace_viewed`, `app_featured`, `app_approved`
-## 8) DoD: [ ] Lista de apps, [ ] Featured funciona, [ ] Aprovação editorial funciona
+## 7) Eventos: `store_catalog_viewed`, `product_created`, `product_edited`
+## 8) DoD: [ ] Lista de produtos, [ ] Criar/editar produtos, [ ] Categorias funcionam, [ ] Integração com conversão XP→Moedas
 ## 9) Edições: Admin apenas
-## 10) Back: `GET /api/admin/marketplace`, `POST /api/admin/marketplace/feature`
+## 10) Back: `GET /api/admin/store/products`, `POST /api/admin/store/products`, `PUT /api/admin/store/products/:id`
 
-[fonte: 07 - alinhamento.md → Head Product Design → Marketplace/Store público]
+**IMPORTANTE**: Loja de recompensas permite alunos trocarem XP/moedas por produtos/benefícios.
+**NÃO** é catálogo de apps criados (discovery de InfoApps).
+
+[fonte: Resposta Cliente #3 → Estética Amazon/Mercado Livre simplificada, 2 opções: "Comprar agora" ou "Comprar com Coins"]
 ---

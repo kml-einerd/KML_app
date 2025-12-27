@@ -56,7 +56,7 @@ Este documento garante que todas as decisões do conselho sejam consistentes, ra
 | Motor (Tema→Estação→Dinâmica→Tarefa) é estável | Arquitetura do produto não pode ser "builder genérico" | 3 Formatos Oficiais: Missão, Aula Interativa, Aplicação | 01 - economia.md → Constituição do Sistema; Creator Studio: Create InfoApp, telas Build; Learner: telas Player, Missão, Aplicação |
 | Quality Gates bloqueiam publicação | Checkpoint por beat obrigatório; Aplicação por módulo obrigatória; Feedback obrigatório | QA Checklist previne apps ruins em escala | Creator Studio: tela QA Checklist, tela Publish (estado bloqueado); 08_QA_GOVERNANCA/gates_publicacao.md |
 | 80+ apps (escala conteúdo-agnóstico) | Creator Loop via Import Pack (.zip) | Criação baseada em templates, não construção livre de app | Creator Studio: tela Import Pack; 05_VARIANTES_MODO_STUDIO/templates_micro_saas.md |
-| Marketplace/Store público [fonte: 07 - alinhamento.md → Head Product Design] | Descoberta e distribuição necessárias para produto final | Marketplace público + modo demo/preview | Creator Studio: Settings (domínio/SEO/Store); Platform Admin: tela Catálogo/Marketplace |
+| Loja de Recompensas [fonte: Resposta Cliente #3] | Aluno troca XP/moedas por produtos/benefícios (NÃO é catálogo de apps) | Loja de recompensas + configuração de produtos | Learner: tela Marketplace/Loja; Creator Studio: Rewards/Economy (ativar loja); Platform Admin: Configuração de Produtos |
 
 **Risco se ignorado**: Produto se torna "builder genérico" sem diferenciação.
 
@@ -228,11 +228,13 @@ Este documento garante que todas as decisões do conselho sejam consistentes, ra
 
 | Visão | Critério (Inegociável) | Implicação no Produto | Onde Aparece |
 |-------|------------------------|----------------------|--------------|
-| Moderação para marketplace | Marketplace exige moderação de conteúdo para proteger reputação | Reportes, revisão de conteúdo, bloqueios | Platform Admin: tela Moderação/Trust; Learner: Reportar Problema (reporte in-app) |
-| Anti-fraude em uploads de prova | Prova de aplicação pode ser abusada (screenshots falsos, spam) | Anti-spam e validação em uploads de prova | Learner: tela Aplicação (ProofForm com validação); Platform Admin: Moderação (fila de revisão de prova) |
+| Moderação de conteúdo | Conteúdo gerado por usuário exige moderação para proteger reputação | Reportes, revisão de conteúdo suspeito, bloqueios | Platform Admin: tela Moderação/Trust; Learner: Reportar Problema (reporte in-app) |
+| Anti-fraude em aplicações | Aplicações auto-declarativas podem ser abusadas (texto copiado, links spam) | Detecção de padrões suspeitos (SEM upload de arquivos) | Learner: tela Aplicação (validação de texto/link); Platform Admin: Moderação (conteúdo suspeito) |
 | Logs de auditoria no Studio | Times criadores multi-usuário precisam de accountability | Trilha de auditoria para todas as ações do Studio | Creator Studio: tela Roles & Audit; Platform Admin: tela Audit |
 
-**Risco se ignorado**: Marketplace se torna risco reputacional e legal; times criadores carecem de accountability.
+**Risco se ignorado**: UGC sem moderação se torna risco reputacional e legal; times criadores carecem de accountability.
+
+[fonte: Resposta Cliente #2 → Upload de prova REMOVIDO, validação via honestidade + padrões suspeitos]
 
 ---
 
@@ -273,7 +275,7 @@ Este documento garante que todas as decisões do conselho sejam consistentes, ra
 
 | Visão | Critério (Inegociável) | Implicação no Produto | Onde Aparece |
 |-------|------------------------|----------------------|--------------|
-| Padrões editoriais + revisão por amostra | Qualidade escala via padrões, não apenas automação | Guia editorial + rubricas; QA para apps listados em marketplace | 08_QA_GOVERNANCA/gates_publicacao.md (QA editorial); 05 - EdTech.md → tabela Padrões editoriais |
+| Padrões editoriais + revisão por amostra | Qualidade escala via padrões, não apenas automação | Guia editorial + rubricas; QA para todos os apps publicados | 08_QA_GOVERNANCA/gates_publicacao.md (QA editorial); 05 - EdTech.md → tabela Padrões editoriais |
 | Objetivos de aprendizagem obrigatórios | Toda trilha deve definir objetivo | Metadados da trilha obrigam "o que você será capaz de fazer" | Creator Studio: wizard Create InfoApp (campo objetivo obrigatório); 08_QA_GOVERNANCA/gates_publicacao.md (Gate 6: Clareza) |
 | Exemplos reais obrigatórios | Mínimo de 1 exemplo real por aula | Validação checa presença de exemplo | 08_QA_GOVERNANCA/gates_publicacao.md (padrões editoriais) |
 | Linguagem clara (clareza > jargão) | Produto multi-nicho requer linguagem acessível | Diretrizes editoriais para criadores | Creator Studio: Content Library (doc de diretrizes editoriais) |
@@ -288,11 +290,13 @@ Este documento garante que todas as decisões do conselho sejam consistentes, ra
 
 | Visão | Critério (Inegociável) | Implicação no Produto | Onde Aparece |
 |-------|------------------------|----------------------|--------------|
-| Termos para UGC, uploads, marketplace | Fundação legal para conteúdo gerado por usuário e marketplace | Termos de Serviço, políticas de conteúdo, consentimento de upload | Learner: Signup (checkboxes de consentimento), Aplicação (consentimento de upload); Creator Studio: Publish (termos de marketplace); Platform Admin: Moderação (políticas de conteúdo) |
+| Termos para UGC e loja de recompensas | Fundação legal para conteúdo gerado por usuário e loja | Termos de Serviço, políticas de conteúdo, consentimento de dados | Learner: Signup (checkboxes de consentimento); Creator Studio: Publish (termos de uso); Platform Admin: Moderação (políticas de conteúdo) |
 | Privacidade (conformidade LGPD) | Conformidade com regulação de proteção de dados | Política de privacidade, controles de dados, gestão de consentimento | Learner: Signup (consentimento de privacidade), Settings (controles de privacidade); Creator Studio: Settings (configurações de dados) |
 | Políticas de conteúdo + moderação | Proteger plataforma de risco legal | Enforcement de política de conteúdo via moderação | Platform Admin: tela Moderação/Trust (enforcement de políticas) |
 
-**Risco se ignorado**: Upload/prova + marketplace sem fundação legal = bomba legal.
+**Risco se ignorado**: UGC + loja sem fundação legal = bomba legal.
+
+[fonte: Resposta Cliente #2 → Upload REMOVIDO; Resposta Cliente #3 → Loja de Recompensas]
 
 ---
 

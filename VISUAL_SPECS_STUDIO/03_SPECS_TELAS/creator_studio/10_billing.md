@@ -1,4 +1,22 @@
-# BILLING
+# BILLING (⚠️ DEPRECATED - REMOVIDO EM v3.0)
+
+**Status**: DEPRECATED
+**Data de Deprecação**: 2025-12-27
+**Razão**: Cliente decidiu por modelo open source sem billing
+
+**Cliente disse**: "Grátis para todos (open source, sem billing)"
+
+**Impacto**:
+- Plataforma é open source (GitHub)
+- Sem cobrança criador → plataforma
+- Sem planos pagos (Free/Starter/Pro)
+- Self-hosted (cada criador hospeda próprio servidor)
+
+**Ver nova arquitetura**: `/13_ARQUITETURA_PRODUTO/arquitetura_gcp.md`
+
+---
+
+# BILLING (CONTEÚDO ANTIGO - APENAS REFERÊNCIA)
 
 ## 1) Objetivo da Tela
 Gerenciar plano, quotas (TTS, storage, usuários), faturas.

@@ -85,8 +85,8 @@ Este documento define a navegação oficial, jornadas, pontos de decisão críti
 - Histórico de conclusões
 
 #### ECONOMIA
-- Recompensas/Loja
-- Carteira/Saldo XP
+- Marketplace/Loja de Recompensas (gastar moedas)
+- Carteira/Saldo XP e Moedas
 - Histórico de Resgates
 
 #### SOCIAL (GOVERNADO)
@@ -220,7 +220,7 @@ Este documento define a navegação oficial, jornadas, pontos de decisão críti
 #### PUBLISH & VERSÕES
 - **Publish**
   - Review final
-  - Termos de Marketplace (se público)
+  - Termos de Uso e Políticas
   - Botão "Publicar"
 
 - **Versioning**
@@ -236,7 +236,7 @@ Este documento define a navegação oficial, jornadas, pontos de decisão críti
 #### ECONOMIA & RECOMPENSAS
 - XP Rules (presets + avançado)
 - Badges (criar/editar)
-- Loja (recompensas)
+- Loja de Recompensas (ativar/configurar produtos custom)
 
 #### ANALYTICS
 
@@ -342,11 +342,11 @@ Este documento define a navegação oficial, jornadas, pontos de decisão críti
 - Bloqueios
 - Políticas de Conteúdo
 
-#### CATÁLOGO/MARKETPLACE
-- Listagem de InfoApps Públicos
-- Descoberta
-- Featured/Categorias
-- Review Editorial (por amostra)
+#### LOJA DE RECOMPENSAS (CONFIGURAÇÃO)
+- Catálogo Global de Produtos/Benefícios
+- Criar/Editar Produtos
+- Categorias (Descontos, Premium, Gift Cards, Físicos)
+- Ver Resgates (histórico de compras)
 
 #### INFRA/STATUS
 - Saúde do Sistema
@@ -372,15 +372,17 @@ Este documento define a navegação oficial, jornadas, pontos de decisão críti
   ↓
 [Moderação: Revisar Denúncias]
   ↓
-[Catálogo: Aprovar Apps para Marketplace]
+[Loja: Configurar Produtos de Recompensas]
   ↓
 [Infra: Monitorar Custos/Saúde]
 ```
 
 **Pontos de Decisão Críticos**:
-- **Moderação**: Bloquear/aprovar conteúdo
-- **Catálogo**: Aprovar apps para marketplace público
+- **Moderação**: Bloquear/aprovar conteúdo denunciado
+- **Loja**: Configurar produtos/benefícios que alunos podem resgatar
 - **Infra**: Alertas de custo exigem ação imediata
+
+[fonte: Resposta Cliente #3 → Marketplace é LOJA DE RECOMPENSAS, não catálogo de apps]
 
 ---
 
@@ -399,7 +401,7 @@ Este documento define a navegação oficial, jornadas, pontos de decisão críti
 | **Gate 5: Tempo/Escopo** | Beats 45-90s (tolerância) | Alerta/ajuste automático | Import Pack: Validação |
 | **Gate 6: Clareza** | Objetivo da aula + "o que você saberá fazer" | Não publica | Creator Studio: QA Checklist |
 
-### 4.2 Score de Qualidade (Para Marketplace)
+### 4.2 Score de Qualidade (Para Publicação)
 
 [fonte: 05 - sistema completo de EdTech.md → Score de Qualidade]
 
@@ -413,9 +415,12 @@ Este documento define a navegação oficial, jornadas, pontos de decisão críti
 | **Engajamento Real** | Completion rate + retorno D1/D7 | Thresholds |
 
 **Apps abaixo do score**:
-- Ficam "não listados" no marketplace
-- Ou aparecem com selo "beta"
-- Ou exigem revisão manual editorial
+- Bloqueados de publicação até atingir threshold
+- Ou aparecem com selo "beta" (criador escolhe publicar mesmo com score baixo)
+
+**NOTA**: Discovery/marketplace de apps públicos vai para v1.5. v1 tem apenas QA gates para publicação.
+
+[fonte: Resposta Cliente #10 → SEO/Discovery v1.5]
 
 ---
 
@@ -433,8 +438,8 @@ Este documento define a navegação oficial, jornadas, pontos de decisão críti
 
 ### Platform Admin
 1. **Moderação**: Aprovar/bloquear conteúdo denunciado
-2. **Catálogo**: Aprovar apps para marketplace público
-3. **Alertas de Custo**: Ação imediata necessária
+2. **Loja de Recompensas**: Configurar produtos/benefícios globais
+3. **Alertas de Custo**: Ação imediata necessária (TTS, storage)
 
 ---
 
@@ -448,11 +453,13 @@ Este documento define a navegação oficial, jornadas, pontos de decisão críti
 
 ### 6.2 Modo Demo/Preview Público
 
-[fonte: 07 - alinhamento.md → Head of Product Design → Marketplace/Store público]
-
-- Criador pode compartilhar link de preview
+- Criador pode compartilhar link de preview do seu app
 - Usuário vê telas do app sem logar
 - CTA: "Começar agora" → Signup
+
+**NOTA**: Discovery/marketplace público de apps vai para v1.5. v1 tem apenas preview direto via link.
+
+[fonte: Resposta Cliente #10 → SEO/Discovery v1.5, cada produto tem funil próprio]
 
 ### 6.3 Search Global
 
@@ -478,8 +485,8 @@ Este documento define a navegação oficial, jornadas, pontos de decisão críti
 
 ### Platform Admin
 - **Navegação**: Sidebar (6-8)
-- **Jornada**: Moderação → Catálogo → Infra
-- **Gates**: Aprovação manual para marketplace
+- **Jornada**: Moderação → Loja de Recompensas → Infra
+- **Gates**: Moderação de conteúdo + configuração de produtos da loja
 
 ---
 

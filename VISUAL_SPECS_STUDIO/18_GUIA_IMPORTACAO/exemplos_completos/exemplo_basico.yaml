@@ -1,0 +1,309 @@
+# ===================================================================
+# EXEMPLO BÁSICO: InfoApp "Copy: Big Idea"
+# ===================================================================
+# Este arquivo demonstra a estrutura mínima de um InfoApp
+# com 1 track, 2 lessons, 1 application
+# ===================================================================
+
+# ===== MANIFEST =====
+manifest_version: "1.0"
+infoapp_id: "copy_big_idea_001"
+title: "Copy: Big Idea"
+subtitle: "Aprenda a escrever grandes ideias que vendem"
+description: |
+  Descubra como criar Big Ideas irresistíveis para seus produtos,
+  usando frameworks provados do mundo do copywriting.
+
+language: "pt-BR"
+level: "beginner"
+category: "marketing"
+
+branding:
+  logo: "assets/images/logo.png"
+  cover: "assets/images/cover.png"
+  primary_color: "#6366f1"
+  secondary_color: "#8b5cf6"
+
+learning_objectives:
+  - "Definir o conceito de Big Idea"
+  - "Criar Big Ideas usando framework de 3 elementos"
+  - "Aplicar Big Ideas em campanhas reais"
+
+tracks:
+  - track_001
+
+# ===== TRACK 001 =====
+tracks_data:
+  - track_id: "track_001"
+    order: 1
+    title: "Fundamentos da Big Idea"
+    subtitle: "O que é e por que importa"
+    description: |
+      Entenda o conceito de Big Idea e aprenda a criar ideias
+      que capturam atenção e geram conversão.
+    icon: "🚀"
+    cover_image: "assets/images/track_001_cover.png"
+    lessons:
+      - lesson_001
+      - lesson_002
+    application:
+      enabled: true
+      application_id: "app_001"
+    unlock_conditions:
+      type: "unlocked"
+    rewards:
+      coins: 50
+      badge: "badge_big_idea_basics"
+
+# ===== LESSON 001 =====
+lessons_data:
+  - lesson_id: "lesson_001"
+    track_id: "track_001"
+    order: 1
+    title: "O que é Big Idea?"
+    subtitle: "Definição e importância"
+    estimated_duration_minutes: 6
+    objectives:
+      - "Definir Big Idea com suas próprias palavras"
+      - "Identificar Big Ideas em campanhas famosas"
+
+    beats:
+      # ===== BEAT 1 =====
+      - beat_number: 1
+        narration: |
+          Bem-vindo ao módulo de Big Ideas!
+          Uma Big Idea é a ideia central, irresistível,
+          que conecta seu produto ao desejo profundo do cliente.
+        checkpoint:
+          type: "QUIZ"
+          prompt: "Qual destas frases é uma Big Idea?"
+          options:
+            - text: "Nosso produto é o melhor do mercado"
+              feedback: "Isso é uma afirmação genérica, não uma Big Idea poderosa."
+            - text: "Descubra o segredo que CEOs usam para dobrar produtividade em 30 dias"
+              feedback: "Correto! Esta é uma Big Idea: específica, curiosa, promete transformação."
+            - text: "Compre agora com 50% de desconto"
+              feedback: "Isso é uma oferta promocional, não uma Big Idea."
+          correct_index: 1
+        audio_url: null
+        visual_cue: "highlight"
+
+      # ===== BEAT 2 =====
+      - beat_number: 2
+        narration: |
+          Exemplo clássico: "A dieta que permite comer gordura e perder peso".
+          Esta Big Idea da dieta Atkins quebrou o padrão de "coma menos"
+          e criou um novo mercado bilionário.
+        checkpoint:
+          type: "REFLECTION"
+          prompt: |
+            Pense em uma Big Idea de um produto que você admira.
+            O que torna ela poderosa?
+          min_characters: 50
+        audio_url: null
+        visual_cue: "example"
+
+      # ===== BEAT 3 =====
+      - beat_number: 3
+        narration: |
+          Uma Big Idea eficaz tem 3 elementos essenciais:
+          Novidade (algo novo), Especificidade (detalhe concreto),
+          e Promessa (transformação clara).
+        checkpoint:
+          type: "MATCH"
+          prompt: "Relacione cada elemento com sua definição:"
+          pairs:
+            - left: "Novidade"
+              right: "Algo que o público nunca viu dessa forma"
+            - left: "Especificidade"
+              right: "Detalhe concreto, não genérico"
+            - left: "Promessa"
+              right: "Transformação clara e desejável"
+        audio_url: null
+        visual_cue: "framework"
+
+    rewards:
+      coins_base: 10
+      coins_perfect_score: 20
+
+  # ===== LESSON 002 =====
+  - lesson_id: "lesson_002"
+    track_id: "track_001"
+    order: 2
+    title: "Framework dos 3 Elementos"
+    subtitle: "Como criar Big Ideas poderosas"
+    estimated_duration_minutes: 8
+    objectives:
+      - "Aplicar framework de 3 elementos"
+      - "Avaliar qualidade de Big Ideas"
+
+    beats:
+      # ===== BEAT 1 =====
+      - beat_number: 1
+        narration: |
+          Vamos detalhar o primeiro elemento: NOVIDADE.
+          Novidade não significa "nunca feito antes", mas sim
+          "nunca apresentado DESSA FORMA para ESTE público".
+        checkpoint:
+          type: "QUIZ"
+          prompt: "Qual destes exemplos tem elemento de novidade?"
+          options:
+            - text: "Academia com aulas de musculação"
+              feedback: "Genérico. Toda academia tem isso."
+            - text: "Academia que usa videogame para treinar"
+              feedback: "Correto! Ângulo novo: gamificação + fitness."
+            - text: "Academia com desconto de 20%"
+              feedback: "Desconto não é novidade conceitual."
+          correct_index: 1
+        audio_url: null
+        visual_cue: "highlight"
+
+      # ===== BEAT 2 =====
+      - beat_number: 2
+        narration: |
+          Segundo elemento: ESPECIFICIDADE.
+          Compare: "Perca peso" (genérico) vs "Perca 5kg em 14 dias" (específico).
+          Números, detalhes, e promessas concretas tornam a Big Idea crível.
+        checkpoint:
+          type: "TRUE_FALSE"
+          statement: "Big Ideas genéricas convertem melhor porque atraem mais pessoas"
+          correct: false
+          feedback_correct: "Correto! Especificidade gera mais credibilidade e ação."
+          feedback_incorrect: "Na verdade, especificidade gera mais conversão porque é mais crível."
+        audio_url: null
+        visual_cue: "comparison"
+
+      # ===== BEAT 3 =====
+      - beat_number: 3
+        narration: |
+          Terceiro elemento: PROMESSA.
+          A promessa deve conectar com o desejo profundo do público,
+          não apenas com o benefício superficial do produto.
+        checkpoint:
+          type: "FILL_BLANK"
+          text_with_blanks: |
+            Uma boa Big Idea promete _____ (transformação/desconto),
+            não apenas _____ (features/benefícios).
+          correct_answers:
+            - blank_1: "transformação"
+              blank_2: "features"
+        audio_url: null
+        visual_cue: "framework"
+
+    rewards:
+      coins_base: 10
+      coins_perfect_score: 20
+
+# ===== APPLICATION 001 =====
+applications_data:
+  - application_id: "app_001"
+    track_id: "track_001"
+    title: "Crie sua primeira Big Idea"
+    description: |
+      Aplique o framework de Big Ideas para criar
+      uma ideia original para um produto à sua escolha.
+
+    type: "PROJECT"
+
+    instructions: |
+      1. Escolha um produto (pode ser fictício ou real)
+      2. Defina o público-alvo
+      3. Crie uma Big Idea usando os 3 elementos: Novidade, Especificidade, Promessa
+      4. Escreva um parágrafo explicando por que sua Big Idea é eficaz
+
+    checklist:
+      - criteria: "Big Idea tem elemento de novidade"
+        description: "Ângulo novo ou surpreendente"
+      - criteria: "Big Idea é específica (não genérica)"
+        description: "Detalhe concreto, números, promessa clara"
+      - criteria: "Big Idea tem promessa de transformação"
+        description: "Conecta com desejo profundo do público"
+
+    fields:
+      - field_id: "product"
+        type: "text"
+        label: "Nome do produto"
+        required: true
+
+      - field_id: "target_audience"
+        type: "text"
+        label: "Público-alvo"
+        required: true
+
+      - field_id: "big_idea"
+        type: "textarea"
+        label: "Sua Big Idea (escreva em 1-2 frases)"
+        min_characters: 50
+        required: true
+
+      - field_id: "explanation"
+        type: "textarea"
+        label: "Explicação (por que sua Big Idea é eficaz?)"
+        placeholder: "Analise sua Big Idea usando os 3 elementos: Novidade, Especificidade, Promessa"
+        min_characters: 150
+        required: true
+
+      - field_id: "reference_link"
+        type: "url"
+        label: "Link de referência (opcional)"
+        placeholder: "https://exemplo.com/campanha"
+        required: false
+
+    rewards:
+      coins_base: 15
+      coins_perfect_score: 30
+
+# ===== VOCABULÁRIO SRS (OPCIONAL) =====
+vocabulary:
+  - term: "Big Idea"
+    definition: "Ideia central irresistível que conecta produto ao desejo do cliente"
+    example: "A dieta que permite comer gordura e perder peso"
+    category: "conceito"
+
+  - term: "Novidade"
+    definition: "Elemento de uma Big Idea que traz ângulo novo ou surpreendente"
+    example: "Ao invés de 'coma menos', a dieta Atkins diz 'coma gordura'"
+    category: "framework"
+
+  - term: "Especificidade"
+    definition: "Detalhe concreto que torna Big Idea crível e memorável"
+    example: "'Perca 5kg em 14 dias' (específico) vs 'Perca peso' (genérico)"
+    category: "framework"
+
+  - term: "Promessa"
+    definition: "Transformação clara e desejável que a Big Idea oferece"
+    example: "'Dobre sua produtividade' promete mudança concreta"
+    category: "framework"
+
+# ===== LOJA DE RECOMPENSAS (OPCIONAL) =====
+store:
+  enabled: true
+  products:
+    - id: "prod_001"
+      name: "Ebook: 100 Big Ideas de Campanhas Famosas"
+      description: "Análise detalhada de 100 Big Ideas que geraram milhões em vendas"
+      price_coins: 100
+      type: "digital"
+      image: "assets/images/ebook_big_ideas.png"
+      stock_quantity: null  # Ilimitado
+
+    - id: "prod_002"
+      name: "Template: Worksheet de Big Ideas"
+      description: "Planilha editável para criar e validar suas Big Ideas"
+      price_coins: 50
+      type: "digital"
+      image: "assets/images/template_worksheet.png"
+      stock_quantity: null
+
+    - id: "prod_003"
+      name: "Desconto 20%: Curso Avançado de Copy"
+      description: "Cupom de 20% de desconto no curso completo de Copywriting"
+      price_coins: 150
+      type: "discount"
+      image: "assets/images/cupom_curso.png"
+      stock_quantity: 50  # Limitado
+      metadata:
+        discount_code: "BIGIDEA20"
+        expiration_days: 30
+
+# ===== FIM DO ARQUIVO =====
